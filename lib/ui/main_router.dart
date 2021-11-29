@@ -65,7 +65,6 @@ class MainRouter {
         handler: Handler(
           handlerFunc:
               (BuildContext? context, Map<String, List<String>> params) {
-            BlocRegister();
             if (params.containsKey('user_id')) {
               final String? userId = params['user_id']?[0];
               return BlocProvider.value(
@@ -75,7 +74,10 @@ class MainRouter {
                 ),
               );
             }
-            return const UsersPage();
+            return BlocProvider.value(
+              value: Injector.appInstance.get<UserBloc>(),
+              child: const UsersPage(),
+            );
           },
         ),
       );

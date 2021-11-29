@@ -26,12 +26,17 @@ class PostCardWidget extends StatelessWidget {
                   '${postEntity?.title}',
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
                         fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        fontStyle: FontStyle.italic,
                       ),
                 ),
               ),
               TextWidget(
                 '${postEntity?.body}',
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      decorationStyle: TextDecorationStyle.wavy,
+                      fontStyle: FontStyle.italic,
+                    ),
               ),
             ],
           ),

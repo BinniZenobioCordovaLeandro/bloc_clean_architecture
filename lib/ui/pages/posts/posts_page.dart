@@ -13,7 +13,7 @@ import 'package:clean_architecture/ui/widgets/wrap_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PostsPage extends StatelessWidget {
+class PostsPage extends StatefulWidget {
   final String? userId;
 
   const PostsPage({
@@ -22,15 +22,27 @@ class PostsPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<PostsPage> createState() => _PostsPageState();
+}
+
+class _PostsPageState extends State<PostsPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
       appBar: AppBarWidget(
-        title: 'Posts user $userId',
+        title: 'Posts user ${widget.userId}',
         showGoback: true,
         onPressedGoBack: () {
-          BlocProvider.of<UserBloc>(context).add(
-            const UserEventFetchList(),
-          );
           Navigator.of(context).pop();
         },
       ),
@@ -51,7 +63,7 @@ class PostsPage extends StatelessWidget {
                       state is UserEventFetchList ||
                       state is ListUsersLoaded) {
                     BlocProvider.of<UserBloc>(context).add(
-                      UserFetch(userId: int.parse('$userId')),
+                      UserFetch(userId: int.parse('${widget.userId}')),
                     );
                   }
 
@@ -78,7 +90,7 @@ class PostsPage extends StatelessWidget {
                   if (state is PostInitial) {
                     BlocProvider.of<PostBloc>(context).add(
                       PostEventFetchListByUserId(
-                        userId: int.parse('$userId'),
+                        userId: int.parse('${widget.userId}'),
                       ),
                     );
                   }

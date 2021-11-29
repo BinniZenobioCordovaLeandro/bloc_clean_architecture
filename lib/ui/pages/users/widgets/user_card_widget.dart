@@ -59,10 +59,11 @@ class UserCardWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              TextButtonWidget(
-                title: 'Ver publicaciones',
-                onPressed: onPressed,
-              )
+              if (onPressed != null)
+                TextButtonWidget(
+                  title: 'Ver publicaciones',
+                  onPressed: onPressed,
+                )
             ],
           ),
         ),

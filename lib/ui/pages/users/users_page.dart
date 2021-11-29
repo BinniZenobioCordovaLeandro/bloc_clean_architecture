@@ -33,6 +33,11 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ScaffoldWidget(
       appBar: const AppBarWidget(
