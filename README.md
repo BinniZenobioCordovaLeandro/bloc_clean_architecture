@@ -41,3 +41,22 @@ Extras books:
 - [Onion architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
 
 - [Hexagonal architecture](https://alfredobs97.medium.com/clean-architecture-en-flutter-ee028a6379a5#:~:text=Hexagonal%20Architecture)
+
+
+## How run Unit test ?
+with mockito
+
+## How run Widgets test ?
+To do implement.
+
+## How run Integration test ?
+
+First start an emulator/simulator or real device, (if you need the camera, for example, need start the application on a real device)
+
+after, run into command line
+
+```
+    flutter test integration_test
+```
+
+References: `https://youtu.be/WPEsnJgW99M`

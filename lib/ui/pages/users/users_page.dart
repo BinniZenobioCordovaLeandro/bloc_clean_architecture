@@ -89,6 +89,7 @@ class _UsersPageState extends State<UsersPage> {
                         Center(
                           child: FractionallySizedBoxWidget(
                             child: TextFieldWidget(
+                              key: const Key('text_field_filter'),
                               labelText: 'Buscar usuario',
                               onChanged: (String string) {
                                 BlocProvider.of<UserBloc>(context).add(
