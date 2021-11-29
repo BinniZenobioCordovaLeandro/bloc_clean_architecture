@@ -1,4 +1,4 @@
-import 'package:clean_architecture/dependency_injection/repositories_register.dart';
+import 'package:clean_architecture/domain/blocs/post/post_bloc.dart';
 import 'package:clean_architecture/domain/blocs/user/user_bloc.dart';
 import 'package:clean_architecture/ui/pages/users/users_page.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class MainRouter {
             }
             return BlocProvider.value(
               value: Injector.appInstance.get<UserBloc>(),
-              child: UsersPage(),
+              child: const UsersPage(),
             );
           },
         ),
@@ -42,14 +42,20 @@ class MainRouter {
               final String? userId = params['user_id']?[0];
               return BlocProvider.value(
                 value: Injector.appInstance.get<UserBloc>(),
-                child: PostsPage(
-                  userId: userId,
+                child: BlocProvider.value(
+                  value: Injector.appInstance.get<PostBloc>(),
+                  child: PostsPage(
+                    userId: userId,
+                  ),
                 ),
               );
             }
             return BlocProvider.value(
               value: Injector.appInstance.get<UserBloc>(),
-              child: PostsPage(),
+              child: BlocProvider.value(
+                value: Injector.appInstance.get<PostBloc>(),
+                child: PostsPage(),
+              ),
             );
           },
         ),

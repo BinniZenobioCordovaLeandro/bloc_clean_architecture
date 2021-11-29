@@ -13,7 +13,5 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }) : super(AuthInitial());
 
   @override
-  Stream<AuthState> mapEventToState(AuthEvent event) async* {
-    // TODO: implement mapEventToState
-  }
+  Stream<AuthState> mapEventToState(AuthEvent event) async* {}
 }

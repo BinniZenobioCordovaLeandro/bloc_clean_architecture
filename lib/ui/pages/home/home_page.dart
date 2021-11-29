@@ -1,3 +1,4 @@
+import 'package:clean_architecture/ui/widgets/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injector/injector.dart';
@@ -21,8 +22,8 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Homepage'),
+      appBar: const AppBarWidget(
+        title: 'Homepage',
       ),
       body: SafeArea(
         child: SingleChildScrollView(

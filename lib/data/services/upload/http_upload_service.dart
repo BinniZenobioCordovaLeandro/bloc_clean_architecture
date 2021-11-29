@@ -14,7 +14,6 @@ class HttpUploadService extends AbstractUploadService {
     required String imageBase64,
   }) async {
     final HttpClientRequest response = await client.post('url', 80, '/images');
-    print(response);
     return response.bufferOutput;
   }
 }

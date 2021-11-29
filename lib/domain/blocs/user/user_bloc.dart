@@ -16,13 +16,35 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> mapEventToState(
     UserEvent event,
   ) async* {
-    print(event);
+    if (event is UserFetch) {
+      yield UserLoading();
+      try {
+        if (event.userId != null) {
+          final UserEntity? userEntity = await abstractUserRepository.getUser(
+            userId: event.userId!,
+          );
+          if (userEntity?.id != null) {
+            yield UserLoaded(userEntity: userEntity!);
+          } else {
+            yield UserError(error: 'error');
+          }
+        }
+      } catch (e) {
+        yield UserError(error: e.toString());
+      }
+    }
+
     if (event is UserEventFetchList) {
       yield UserLoading();
       try {
-        final List<UserEntity>? listUserEntity =
-            await abstractUserRepository.getUsers();
-
+        final List<UserEntity>? listUserEntity;
+        if (event.userName != null) {
+          listUserEntity = await abstractUserRepository.getUsersByName(
+            userName: '${event.userName}',
+          );
+        } else {
+          listUserEntity = await abstractUserRepository.getUsers();
+        }
         yield ListUsersLoaded(
           listUserEntities: listUserEntity,
         );

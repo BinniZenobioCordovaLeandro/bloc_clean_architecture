@@ -1,6 +1,10 @@
 import 'package:clean_architecture/ui/widgets/elevated_button_widget.dart';
 import 'package:clean_architecture/ui/widgets/fractionally_sized_box_widget.dart';
+import 'package:clean_architecture/ui/widgets/safe_area_widget.dart';
+import 'package:clean_architecture/ui/widgets/shimmer_widget.dart';
+import 'package:clean_architecture/ui/widgets/svg_or_image_widget.dart';
 import 'package:clean_architecture/ui/widgets/text_field_widget.dart';
+import 'package:clean_architecture/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clean_architecture/domain/blocs/user/user_bloc.dart';
@@ -35,65 +39,87 @@ class _UsersPageState extends State<UsersPage> {
         title: 'Prueba de ingreso',
       ),
       body: SingleChildScrollViewWidget(
-        child: BlocBuilder<UserBloc, UserState>(
-          bloc: BlocProvider.of<UserBloc>(context),
-          builder: (context, state) {
-            if (state is UserInitial) {
-              BlocProvider.of<UserBloc>(context).add(
-                UserEventFetchList(),
-              );
-            }
-
-            if (state is UserLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            if (state is ListUsersLoaded &&
-                state.listUserEntities?.isNotEmpty == true) {
-              return WrapWidget(
-                children: [
-                  Container(),
-                  Center(
-                    child: FractionallySizedBoxWidget(
-                      child: TextFieldWidget(
-                        labelText: 'Buscar usuario',
-                        onChanged: (String string) {
-                          print(string);
-                        },
-                      ),
-                    ),
-                  ),
-                  ...state.listUserEntities!.map((user) {
-                    return Center(
-                      child: FractionallySizedBoxWidget(
-                        child: UserCardWidget(
-                          userEntity: user,
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(
-                              '/user',
-                              arguments: user.id,
-                            );
-                          },
+        child: SafeAreaWidget(
+          child: BlocBuilder<UserBloc, UserState>(
+              bloc: BlocProvider.of<UserBloc>(context),
+              builder: (context, state) {
+                if (state is UserInitial || state is UserFetch) {
+                  BlocProvider.of<UserBloc>(context).add(
+                    const UserEventFetchList(),
+                  );
+                }
+                if (state is UserError) {
+                  return WrapWidget(
+                    children: [
+                      const Center(
+                        child: FractionallySizedBoxWidget(
+                          child: SvgOrImageWidget(
+                            urlSvgOrImage:
+                                'https://www.initcoms.com/wp-content/uploads/2020/07/404-error-not-found-1.png',
+                          ),
                         ),
                       ),
-                    );
-                  }).toList()
-                ],
-              );
-            }
+                      Center(
+                        child: FractionallySizedBoxWidget(
+                          child: ElevatedButtonWidget(
+                            onPressed: () {
+                              BlocProvider.of<UserBloc>(context).add(
+                                const UserEventFetchList(),
+                              );
+                            },
+                            title: 'Reintentar',
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }
 
-            return Center(
-              child: ElevatedButtonWidget(
-                  title: 'refresh',
-                  onPressed: () {
-                    BlocProvider.of<UserBloc>(context).add(
-                      UserEventFetchList(),
-                    );
-                  }),
-            );
-          },
+                return ShimmerWidget(
+                  enabled: (state is ListUsersLoaded) ? false : true,
+                  child: SafeAreaWidget(
+                    child: WrapWidget(
+                      children: [
+                        Container(),
+                        Center(
+                          child: FractionallySizedBoxWidget(
+                            child: TextFieldWidget(
+                              labelText: 'Buscar usuario',
+                              onChanged: (String string) {
+                                BlocProvider.of<UserBloc>(context).add(
+                                  UserEventFetchList(userName: string),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        if (state is ListUsersLoaded &&
+                            state.listUserEntities!.isEmpty)
+                          const Center(
+                            child: FractionallySizedBoxWidget(
+                              child: TextWidget('List is empty...'),
+                            ),
+                          ),
+                        if (state is ListUsersLoaded)
+                          ...state.listUserEntities!.map((user) {
+                            return Center(
+                              child: FractionallySizedBoxWidget(
+                                child: UserCardWidget(
+                                  userEntity: user,
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed(
+                                      '/posts?user_id=${user.id}',
+                                    );
+                                  },
+                                ),
+                              ),
+                            );
+                          }).toList()
+                      ],
+                    ),
+                  ),
+                );
+              }),
         ),
       ),
     );

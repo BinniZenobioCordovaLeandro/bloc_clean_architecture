@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class SnackBarHelper {
+class SnackBarWidget {
   final BuildContext? context;
   final String? title;
   final String? buttonText;
   final Function? onPressed;
 
-  SnackBarHelper({
+  SnackBarWidget({
     required this.context,
     this.title,
     this.buttonText,

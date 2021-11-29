@@ -1,4 +1,3 @@
-import 'package:clean_architecture/dependency_injection/bloc_register.dart';
 import 'package:clean_architecture/domain/blocs/user/user_bloc.dart';
 import 'package:clean_architecture/ui/main_router.dart';
 import 'package:clean_architecture/ui/pages/users/users_page.dart';
@@ -11,7 +10,7 @@ import 'package:injector/injector.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  BlocRegister();
+  MainRouter.defineRoutes();
   runApp(const MyApp());
 }
 
@@ -26,8 +25,17 @@ class MyApp extends StatelessWidget {
       darkTheme: DarkTheme().get(),
       home: BlocProvider.value(
         value: Injector.appInstance.get<UserBloc>(),
-        child: UsersPage(),
+        child: const UsersPage(),
       ),
+      onGenerateRoute: (RouteSettings settings) {
+        return FluroRouter.appRouter
+            .matchRoute(
+              context,
+              settings.name,
+              routeSettings: settings,
+            )
+            .route;
+      },
     );
   }
 }

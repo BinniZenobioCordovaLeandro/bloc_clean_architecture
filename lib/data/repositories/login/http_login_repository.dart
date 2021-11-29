@@ -14,8 +14,6 @@ class HttpLoginRepository extends AbstractLoginRepository {
     required String username,
     required String password,
   }) async {
-    final response = await client?.post('url', 80, '/login');
-    print(response);
     return UserEntity(
       username: username,
       name: 'name',
@@ -26,8 +24,6 @@ class HttpLoginRepository extends AbstractLoginRepository {
 
   @override
   Future<void> doLogout() {
-    final response = client?.post('url', 80, '/logout');
-    print(response);
     throw NullThrownError();
   }
 }
