@@ -7,25 +7,24 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets(
-    'Test SignIn with platanitos account',
+    'Test show posts from a user',
     (tester) async {
       app.main();
-
-      await tester.pump(const Duration(seconds: 1));
-      tester.pumpAndSettle();
+      await tester.pumpAndSettle();
 
       final testFieldFilter = find.byKey(const Key('text_field_filter')).first;
-
-      tester.pumpAndSettle();
+      await tester.pumpAndSettle();
 
       await tester.enterText(testFieldFilter, 'Leanne');
-      tester.pumpAndSettle();
+      await tester.pumpAndSettle();
 
       final firstShowPostsButton =
           find.bySemanticsLabel('Ver publicaciones').first;
 
       await tester.tap(firstShowPostsButton);
-      tester.pumpAndSettle();
+      await tester.pumpAndSettle();
+
+      await tester.pump(const Duration(seconds: 5));
     },
   );
 }
