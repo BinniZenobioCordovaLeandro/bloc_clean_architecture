@@ -10,6 +10,5 @@ class PostEventFetchListByUserId extends PostEvent {
     required this.userId,
   });
 
-  @override
   List<Object?> get props => [userId];
 }

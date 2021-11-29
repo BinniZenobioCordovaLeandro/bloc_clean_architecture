@@ -7,7 +7,6 @@ import 'package:clean_architecture/ui/widgets/fractionally_sized_box_widget.dart
 import 'package:clean_architecture/ui/widgets/safe_area_widget.dart';
 import 'package:clean_architecture/ui/widgets/scaffold_widget.dart';
 import 'package:clean_architecture/ui/widgets/single_child_scroll_view_widget.dart';
-import 'package:clean_architecture/ui/widgets/snack_bar_widget.dart';
 import 'package:clean_architecture/ui/widgets/text_widget.dart';
 import 'package:clean_architecture/ui/widgets/wrap_widget.dart';
 import 'package:flutter/material.dart';

@@ -47,7 +47,7 @@ class CardWidget extends StatelessWidget {
         color: color ?? Theme.of(context).cardTheme.color,
         margin: margin,
         borderOnForeground: true,
-        child: Container(
+        child: SizedBox(
           width: width,
           child: child,
         ),

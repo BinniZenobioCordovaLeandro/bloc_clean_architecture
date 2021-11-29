@@ -18,6 +18,5 @@ class UserEventFetchList extends UserEvent {
 
   const UserEventFetchList({this.userName});
 
-  @override
   List<Object?> get props => [userName];
 }

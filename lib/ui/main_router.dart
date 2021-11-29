@@ -54,7 +54,7 @@ class MainRouter {
               value: Injector.appInstance.get<UserBloc>(),
               child: BlocProvider.value(
                 value: Injector.appInstance.get<PostBloc>(),
-                child: PostsPage(),
+                child: const PostsPage(),
               ),
             );
           },
