@@ -44,7 +44,12 @@ Extras books:
 
 
 ## How run Unit test ?
-with mockito
+
+With Mockito, run unit test with:
+
+```
+    fvm flutter test test
+```
 
 ## How run Widgets test ?
 To do implement.

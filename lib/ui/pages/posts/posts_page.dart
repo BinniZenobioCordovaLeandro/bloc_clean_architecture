@@ -112,7 +112,7 @@ class _PostsPageState extends State<PostsPage> {
               ),
               const Center(
                 child: TextWidget(
-                  'My Hexadecimal Clean architecture in Flutter',
+                  'My Hexagonal Clean Architecture in Flutter',
                 ),
               ),
             ],

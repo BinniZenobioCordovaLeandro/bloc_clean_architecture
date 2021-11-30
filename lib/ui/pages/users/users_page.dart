@@ -120,7 +120,12 @@ class _UsersPageState extends State<UsersPage> {
                                 ),
                               ),
                             );
-                          }).toList()
+                          }).toList(),
+                        const Center(
+                          child: TextWidget(
+                            'My Hexagonal Clean Architecture in Flutter',
+                          ),
+                        ),
                       ],
                     ),
                   ),

@@ -4,7 +4,6 @@ import 'package:clean_architecture/data/repositories/user_repository/mock_http_u
 import 'package:clean_architecture/domain/entities/user_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:mockito/mockito.dart';
 
 void main() {
   final MockHttpUserRepository mockHttpUserRepository =
@@ -34,20 +33,6 @@ void main() {
     expect(
       cacheHttpUserRepository.getUsers(),
       isInstanceOf<Future<List<UserEntity>>>(),
-    );
-  });
-
-  test('should return a user', () async {
-    CacheHttpUserRepository cacheHttpUserRepository = CacheHttpUserRepository(
-      httpClient: HttpClient(),
-    );
-    await cacheHttpUserRepository.getUser(
-      userId: 1,
-    );
-    verify(
-      mockHttpUserRepository.getUser(
-        userId: 1,
-      ),
     );
   });
 }
