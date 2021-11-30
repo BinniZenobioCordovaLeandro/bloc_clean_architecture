@@ -81,6 +81,7 @@ class _UsersPageState extends State<UsersPage> {
                 }
 
                 return ShimmerWidget(
+                  key: const Key('list_users'),
                   enabled: (state is ListUsersLoaded) ? false : true,
                   child: SafeAreaWidget(
                     child: WrapWidget(
@@ -92,9 +93,15 @@ class _UsersPageState extends State<UsersPage> {
                               key: const Key('text_field_filter'),
                               labelText: 'Buscar usuario',
                               onChanged: (String string) {
-                                BlocProvider.of<UserBloc>(context).add(
-                                  UserEventFetchList(userName: string),
-                                );
+                                if (string.isNotEmpty) {
+                                  BlocProvider.of<UserBloc>(context).add(
+                                    UserEventFetchListByName(userName: string),
+                                  );
+                                } else {
+                                  BlocProvider.of<UserBloc>(context).add(
+                                    const UserEventFetchList(),
+                                  );
+                                }
                               },
                             ),
                           ),
@@ -121,11 +128,13 @@ class _UsersPageState extends State<UsersPage> {
                               ),
                             );
                           }).toList(),
-                        const Center(
-                          child: TextWidget(
-                            'My Hexagonal Clean Architecture in Flutter',
+                        if (state is ListUsersLoaded &&
+                            state.listUserEntities!.isNotEmpty)
+                          const Center(
+                            child: TextWidget(
+                              'My Hexagonal Clean Architecture in Flutter',
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),

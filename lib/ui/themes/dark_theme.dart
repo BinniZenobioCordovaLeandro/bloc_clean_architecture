@@ -3,16 +3,19 @@ import 'package:flutter/services.dart';
 
 class DarkTheme {
   ThemeData? darkTheme;
+  static const Color colorBrand = Color(0xff33512a);
 
   DarkTheme() {
     darkTheme = ThemeData.dark().copyWith(
       brightness: Brightness.dark,
-      primaryColor: const Color(0xff55b849),
-      primaryColorLight: const Color(0xff55b849),
-      primaryColorDark: const Color(0xff55b849),
+      primaryColor: colorBrand,
+      primaryColorLight: colorBrand,
+      primaryColorDark: colorBrand,
       scaffoldBackgroundColor: const Color(0xFF000000),
       backgroundColor: const Color(0xFF1C1E1D),
-      iconTheme: const IconThemeData(color: Colors.grey),
+      iconTheme: const IconThemeData(
+        color: colorBrand,
+      ),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(color: Colors.white),
@@ -30,25 +33,25 @@ class DarkTheme {
       buttonTheme: const ButtonThemeData(
         textTheme: ButtonTextTheme.accent,
         colorScheme: ColorScheme(
-          primary: Color(0xff55b849),
-          primaryVariant: Color(0xff55b849),
-          secondary: Color(0xff55b849),
-          secondaryVariant: Color(0xff55b849),
-          surface: Color(0xff55b849),
-          background: Color(0xff55b849),
-          error: Color(0xff55b849),
-          onPrimary: Color(0xff55b849),
-          onSecondary: Color(0xff55b849),
-          onSurface: Color(0xff55b849),
-          onBackground: Color(0xff55b849),
-          onError: Color(0xff55b849),
+          primary: colorBrand,
+          primaryVariant: colorBrand,
+          secondary: colorBrand,
+          secondaryVariant: colorBrand,
+          surface: colorBrand,
+          background: colorBrand,
+          error: colorBrand,
+          onPrimary: colorBrand,
+          onSecondary: colorBrand,
+          onSurface: colorBrand,
+          onBackground: colorBrand,
+          onError: colorBrand,
           brightness: Brightness.light,
         ),
         disabledColor: Color(0xff828282),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
-        backgroundColor: Color(0xff55b849),
+        backgroundColor: colorBrand,
         splashColor: Colors.transparent,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -78,9 +81,9 @@ class DarkTheme {
             return Colors.grey;
           }
           if (states.contains(MaterialState.pressed)) {
-            return const Color(0xff55b849);
+            return colorBrand;
           }
-          return const Color(0xff55b849);
+          return colorBrand;
         }),
         foregroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
@@ -121,9 +124,9 @@ class DarkTheme {
         foregroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) {
-            return const Color(0xff55b849);
+            return colorBrand;
           }
-          return const Color(0xff55b849);
+          return colorBrand;
         }),
       )),
       inputDecorationTheme: const InputDecorationTheme(
@@ -133,7 +136,7 @@ class DarkTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          borderSide: BorderSide(color: Color(0xff55b849), width: 1),
+          borderSide: BorderSide(color: colorBrand, width: 1),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -156,7 +159,7 @@ class DarkTheme {
         side: MaterialStateProperty.resolveWith<BorderSide>(
             (Set<MaterialState> states) {
           return const BorderSide(
-            color: Color(0xff55b849),
+            color: colorBrand,
             width: 1,
           );
         }),
@@ -184,16 +187,16 @@ class DarkTheme {
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) {
-            return const Color(0xff55b849);
+            return colorBrand;
           }
           return Colors.transparent;
         }),
         foregroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) {
-            return const Color(0xff55b849);
+            return colorBrand;
           }
-          return const Color(0xff55b849); // Defer to the widget's default.
+          return colorBrand; // Defer to the widget's default.
         }),
       )),
       textTheme: const TextTheme(

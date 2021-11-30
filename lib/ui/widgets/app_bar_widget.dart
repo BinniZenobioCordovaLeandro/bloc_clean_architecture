@@ -37,6 +37,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           ? IconButton(
               icon: const Icon(
                 Icons.arrow_back_ios,
+                color: Colors.white,
               ),
               tooltip: 'Ir atras',
               onPressed: () {

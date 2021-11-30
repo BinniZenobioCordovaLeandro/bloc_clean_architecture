@@ -14,9 +14,15 @@ class UserFetch extends UserEvent {
 }
 
 class UserEventFetchList extends UserEvent {
-  final String? userName;
+  const UserEventFetchList();
+}
 
-  const UserEventFetchList({this.userName});
+class UserEventFetchListByName extends UserEvent {
+  final String userName;
+
+  const UserEventFetchListByName({
+    required this.userName,
+  });
 
   List<Object?> get props => [userName];
 }

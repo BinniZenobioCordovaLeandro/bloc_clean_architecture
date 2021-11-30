@@ -34,17 +34,27 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     }
 
+    if (event is UserEventFetchListByName) {
+      try {
+        final List<UserEntity>? listUserEntity;
+        listUserEntity = await abstractUserRepository.getUsersByName(
+          userName: event.userName,
+        );
+        yield ListUsersLoaded(
+          listUserEntities: listUserEntity,
+        );
+      } catch (e) {
+        yield UserError(
+          error: e.toString(),
+        );
+      }
+    }
+
     if (event is UserEventFetchList) {
       yield UserLoading();
       try {
-        final List<UserEntity>? listUserEntity;
-        if (event.userName != null) {
-          listUserEntity = await abstractUserRepository.getUsersByName(
-            userName: '${event.userName}',
-          );
-        } else {
-          listUserEntity = await abstractUserRepository.getUsers();
-        }
+        final List<UserEntity>? listUserEntity =
+            await abstractUserRepository.getUsers();
         yield ListUsersLoaded(
           listUserEntities: listUserEntity,
         );

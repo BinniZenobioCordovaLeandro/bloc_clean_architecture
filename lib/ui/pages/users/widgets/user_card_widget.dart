@@ -28,7 +28,9 @@ class UserCardWidget extends StatelessWidget {
                 width: double.infinity,
                 child: TextWidget(
                   '${userEntity?.name}',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: Theme.of(context).primaryColor,
+                      ),
                 ),
               ),
               Flex(
@@ -41,7 +43,12 @@ class UserCardWidget extends StatelessWidget {
                     width: 16,
                   ),
                   Expanded(
-                    child: TextWidget('${userEntity?.phone}'),
+                    child: TextWidget(
+                      '${userEntity?.phone}',
+                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                    ),
                   ),
                 ],
               ),
@@ -55,7 +62,12 @@ class UserCardWidget extends StatelessWidget {
                     width: 16,
                   ),
                   Expanded(
-                    child: TextWidget('${userEntity?.email}'),
+                    child: TextWidget(
+                      '${userEntity?.email}',
+                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                    ),
                   ),
                 ],
               ),

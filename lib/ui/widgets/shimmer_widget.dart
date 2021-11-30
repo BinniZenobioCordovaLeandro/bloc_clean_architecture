@@ -18,7 +18,7 @@ class ShimmerWidget extends StatelessWidget {
         enabled: enabled!,
         child: child!,
         baseColor: Theme.of(context).backgroundColor,
-        highlightColor: Theme.of(context).scaffoldBackgroundColor,
+        highlightColor: Theme.of(context).primaryColor,
       );
     } else {
       return child!;
