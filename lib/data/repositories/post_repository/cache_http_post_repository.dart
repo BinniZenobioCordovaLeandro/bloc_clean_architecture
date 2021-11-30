@@ -39,7 +39,7 @@ class CacheHttpPostRepository extends AbstractPostRepository {
       }
       return json
           .decode(string)
-          .map((post) => PostEntity.fromMap(post))
+          .map<PostEntity>((post) => PostEntity.fromMap(post))
           .toList() as List<PostEntity>;
     });
 
